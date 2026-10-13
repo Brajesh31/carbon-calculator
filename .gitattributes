@@ -1,0 +1,18 @@
+# Detect text files and normalize committed text to LF.
+* text=auto
+*.py text eol=lf
+*.md text eol=lf
+*.cff text eol=lf
+*.yaml text eol=lf
+*.yml text eol=lf
+*.toml text eol=lf
+*.json text eol=lf
+*.csv text eol=lf
+
+# Keep binary assets unchanged if they are added in the future.
+*.gif binary
+*.jpeg binary
+*.jpg binary
+*.pdf binary
+*.png binary
+*.webp binary
