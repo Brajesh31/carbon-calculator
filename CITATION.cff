@@ -1,0 +1,16 @@
+cff-version: 1.2.0
+message: >-
+  If you use or adapt this software, please cite the repository and identify
+  the version or commit you used.
+title: Personal Carbon Calculator
+type: software
+authors:
+  - family-names: Kumar
+    given-names: Brajesh
+    alias: brajesh31
+repository-code: 'https://github.com/Brajesh31/carbon-calculator'
+license: MIT
+keywords:
+  - Streamlit
+  - personal carbon footprint
+  - educational prototype
