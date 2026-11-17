@@ -1,0 +1,51 @@
+name: Repository quality checks
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  python-syntax:
+    name: Python syntax
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+      - name: Compile application
+        run: python -m py_compile app.py
+
+  documentation:
+    name: Documentation links
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate local Markdown links
+        shell: python
+        run: |
+          from pathlib import Path
+          import re
+          import sys
+
+          docs = [Path("README.md"), *Path("docs").rglob("*.md"),
+                  *Path(".github").rglob("*.md")]
+          pattern = re.compile(r'(?<!!)\[[^\]]*\]\(([^)]+)\)')
+          errors = []
+          for source in docs:
+              for target in pattern.findall(source.read_text(encoding="utf-8")):
+                  target = target.strip()
+                  if not target or target.startswith(("http://", "https://", "mailto:", "#")):
+                      continue
+                  local = target.split("#", 1)[0].split("?", 1)[0]
+                  if local and not (source.parent / local).resolve().exists():
+                      errors.append(f"{source}: missing {target}")
+          if errors:
+              print("\n".join(errors))
+              sys.exit(1)
+          print(f"Checked local links in {len(docs)} Markdown files.")

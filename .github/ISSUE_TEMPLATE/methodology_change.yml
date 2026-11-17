@@ -1,0 +1,41 @@
+name: Methodology or factor change
+description: Propose a factor, unit, assumption, or calculation boundary change.
+title: "[Methodology]: "
+labels: ["methodology"]
+body:
+  - type: markdown
+    attributes:
+      value: "Factors must be traceable and dimensionally consistent. Unsupported values must not be presented as authoritative."
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed change
+    validations:
+      required: true
+  - type: input
+    id: source
+    attributes:
+      label: Original source URL
+    validations:
+      required: true
+  - type: textarea
+    id: provenance
+    attributes:
+      label: Date, geography, unit, boundary, gas basis, uncertainty, and license
+    validations:
+      required: true
+  - type: textarea
+    id: validation
+    attributes:
+      label: Independent calculation or review
+    validations:
+      required: true
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Confirmations
+      options:
+        - label: I checked source reuse and attribution terms.
+          required: true
+        - label: I have not included personal data or secrets.
+          required: true
