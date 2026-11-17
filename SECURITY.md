@@ -1,27 +1,42 @@
-# Security Policy
+# 🛡️ Security Policy
 
-## Supported code
+## Supported scope
 
-Security reports are considered for the current main branch. This repository contains a small Streamlit application with no authentication, database, external API, or application secrets.
+Security reports are considered for the current default branch. The project is a small Streamlit prototype and currently has no authentication, database, public application API, or required application secrets.
 
-## Report privately
+## Reporting a vulnerability privately
 
-Do not publish a vulnerability or sensitive deployment details in a public issue. Use GitHub private vulnerability reporting for this repository if enabled:
+Do not publish vulnerabilities, exploit details, credentials, or sensitive deployment configuration in a public issue.
 
+Use GitHub private vulnerability reporting if enabled:
 https://github.com/Brajesh31/carbon-calculator/security/advisories/new
 
-If private reporting is unavailable, contact Brajesh Kumar (@brajesh31) through https://github.com/brajesh31. Include the affected commit, impact, and a safe reproduction. Remove personal information and secrets from logs.
+If private reporting is unavailable, contact the maintainer through https://github.com/brajesh31. Include:
+- A concise impact description.
+- Affected commit or file.
+- A safe reproduction or proof of concept.
+- Any relevant sanitized logs.
 
-## Data and deployment notes
+Do not include personal data or live secrets.
 
-The app has no explicit persistence or secrets. Streamlit runs Python on the host and sends widget values between the browser and that app session. Do not collect identifying or sensitive data without a privacy design and clear user notice.
+## Security expectations
 
-Keep local virtual environments, .env files, and Streamlit secrets outside Git. If a future integration requires credentials, use the deployment platform's secret manager rather than source code or a committed secrets.toml file.
+- Keep `.env`, Streamlit secrets, API tokens, and deployment credentials out of Git.
+- Use host secret management for any future credentials.
+- Keep dependencies reviewed and patched.
+- Keep GitHub Actions permissions at the minimum required level.
+- Review external actions and pin them to immutable revisions where practical.
+- Avoid logging user activity values or sensitive context.
+- Apply TLS, access control, resource limits, and logging retention at the host.
 
-## Accuracy and user safety
+## Data handling note
 
-The current factors and national comparison are hard-coded, and the factors are described in source as example values without citations. Treat results as unverified estimates. This is a scientific-integrity and user-trust concern; it becomes a security issue if the app is used to make consequential claims or decisions without validation.
+The app has no explicit persistent storage, but Streamlit sends widget values to the Python server for the active session. This repository cannot guarantee what a hosting provider logs or retains. See [docs/privacy.md](docs/privacy.md).
+
+## Scientific integrity and user trust
+
+The factors currently embedded in the app are examples without documented provenance. Misrepresenting them as authoritative could mislead users and organizations. Do not market the current output as certified, verified, or complete. Report materially misleading claims as a project issue.
 
 ## Response
 
-The maintainer will acknowledge and assess reports as reasonably soon as possible, coordinate a fix and disclosure where practical, and credit reporters if requested. No fixed response or patch deadline is promised.
+The maintainer will acknowledge and assess reports as reasonably soon as possible, coordinate remediation and disclosure where practical, and credit the reporter if requested. No fixed response or patch deadline is promised.

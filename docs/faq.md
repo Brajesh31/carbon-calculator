@@ -1,72 +1,41 @@
-# Frequently asked questions
+# ❓ Frequently Asked Questions
 
-## What does the app estimate?
+## Is this a scientifically accurate carbon footprint calculator?
 
-It estimates annual emissions for four inputs: transportation, electricity,
-diet, and waste. It multiplies annualized quantities by fixed factors in
-`app.py`, converts kilograms to tonnes, and shows category values and a total.
-See [architecture.md](architecture.md) for the formulas as implemented.
+No. It is an educational prototype. The current factors are examples without documented source, date, boundary, or validation. See [methodology](methodology.md).
 
-## Which countries are supported?
+## Which country is supported?
 
-Only India is selectable in the current interface. The code contains one set of
-India-labeled example factors; there is no country-specific data selection
-beyond that option.
+India is currently the only country option.
 
-## Are the numbers scientifically validated?
+## What inputs are collected?
 
-No. The source explicitly calls the factors examples and does not cite their
-source, date, methodology, or boundaries. The diet factor's unit comment is
-unclear, the commute distance assumptions are unspecified, and the result
-covers only four categories. A national comparison sentence is also hard-coded
-without a citation. Treat all displayed numbers as illustrative prototype
-output, not as a verified personal footprint.
+Daily commute distance, monthly electricity consumption, meals per day, and weekly waste. See [data dictionary](data-dictionary.md).
 
-## Is the result CO2 or CO2-equivalent?
+## Why does the app multiply commute distance by 365?
 
-The interface labels the results as tonnes of CO2. The source does not define a
-complete greenhouse-gas inventory or lifecycle boundary, so users should not
-interpret it as a comprehensive CO2-equivalent estimate.
+That is what the current code does. It is a major assumption because the app does not ask for commute days per year or whether distance is one-way or return. Do not assume this is an appropriate travel model.
 
-## How are values annualized?
+## Why is the diet factor unclear?
 
-Daily commute distance and meals per day are multiplied by 365. Monthly
-electricity is multiplied by 12, and weekly waste is multiplied by 52. The
-source has no input for commute days per week or whether distance means one-way
-or return travel.
+The dictionary labels the factor per meal, while its inline comment refers to a per-kilogram basis. The dimensional mismatch needs to be resolved before the output can be trusted.
 
-## Why do category totals and the grand total differ slightly from my own sum?
+## Does the result include all greenhouse gases?
 
-Each category is converted to tonnes and rounded to two decimal places before
-the total is computed. The displayed total is the sum of those already-rounded
-category values, rounded again to two decimal places.
+No. The current result is labeled CO₂ and does not represent a complete CO₂e lifecycle footprint.
 
-## Does the app save my inputs?
+## Does the app save my results?
 
-The code does not explicitly write inputs or results to a database, file, or
-external service. Streamlit processes widget values on the Python server for
-the active session. Hosting platforms may have their own operational logging
-and retention, which this repository does not configure. Do not submit
-sensitive or identifying values. See [database.md](database.md).
+The repository has no explicit database or result persistence. Streamlit processes widget values on its server for the active session. Hosting provider logging and retention are separate.
 
-## Does the app need an API key, environment variable, or database?
+## Is there an API?
 
-No. The current source reads no environment variables and does not connect to
-an API or database. `.env.example` documents the current absence of settings.
+No public application API is implemented. See [api.md](api.md).
 
-## Is there a programmatic API?
+## Can I deploy it publicly?
 
-No application API is implemented. The page uses Streamlit's own browser/server
-interaction, which is not a supported project API. See [api.md](api.md).
+A compatible Streamlit host can run it, but a public deployment should make the prototype limitations clear and should not solicit sensitive inputs. See [deployment](deployment.md).
 
-## Can I use the estimate in a report or decision?
+## How can I suggest a factor update?
 
-Not responsibly in its current state. Factors and assumptions have not been
-validated or adequately sourced. Do not use the output for scientific,
-regulatory, financial, purchasing, or other consequential decisions.
-
-## How can I contribute or ask for help?
-
-See [CONTRIBUTING.md](../CONTRIBUTING.md) for changes and factor-source
-requirements, [SUPPORT.md](../SUPPORT.md) for help, and
-[SECURITY.md](../SECURITY.md) for private vulnerability reports.
+Use the methodology-change issue template and provide source, date, geography, units, boundary, gas basis, license, and independent calculation evidence.

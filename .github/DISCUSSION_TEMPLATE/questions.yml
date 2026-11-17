@@ -1,0 +1,21 @@
+title: "❓ Question: "
+body:
+  - type: textarea
+    id: question
+    attributes:
+      label: What would you like to know?
+    validations:
+      required: true
+  - type: textarea
+    id: context
+    attributes:
+      label: What have you already tried?
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Before posting
+      options:
+        - label: I checked README and the documentation hub.
+          required: true
+        - label: I have removed private data and secrets.
+          required: true

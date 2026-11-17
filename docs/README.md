@@ -1,74 +1,64 @@
 # 📚 Documentation Hub
 
-This documentation describes the current Streamlit prototype and the practices required to maintain it responsibly. It does not certify the calculator's factors or results.
+This folder contains the user, contributor, methodology, and maintainer documentation. It describes the current implementation and does not certify the factor data or outputs.
 
-## 🧭 Recommended reading paths
+## 🧭 Reading paths
 
-### 👤 App users
-1. [Installation](installation.md)
-2. [FAQ](faq.md)
-3. [Methodology and limitations](methodology.md)
-4. [Privacy](privacy.md)
-5. [Known issues](known-issues.md)
+**App users:** [User guide](user-guide.md) → [Installation](installation.md) → [FAQ](faq.md) → [Methodology](methodology.md) → [Privacy](privacy.md).
 
-### 🧑‍💻 Contributors
-1. [Development workflow](development.md)
-2. [Architecture](architecture.md)
-3. [Project structure](project-structure.md)
-4. [Testing](testing.md)
-5. [Accessibility](accessibility.md)
-6. [Contribution guide](../CONTRIBUTING.md)
+**Contributors:** [Development](development.md) → [Architecture](architecture.md) → [Project structure](project-structure.md) → [Testing](testing.md) → [Accessibility](accessibility.md) → [Contributing](../CONTRIBUTING.md).
 
-### 🛠️ Maintainers
-1. [Deployment](deployment.md)
-2. [Security](security.md)
-3. [Maintenance](maintenance.md)
-4. [Release process](release-process.md)
-5. [Troubleshooting](troubleshooting.md)
+**Maintainers:** [Deployment](deployment.md) → [Operations runbook](operations-runbook.md) → [Security](security.md) → [Maintenance](maintenance.md) → [Release process](release-process.md).
 
-## 📖 Complete documentation catalogue
+## 📖 Full document index
 
-| File | Purpose |
+| Document | Purpose |
 |---|---|
-| [architecture.md](architecture.md) | Current app components, flow, formulas |
-| [methodology.md](methodology.md) | Factor provenance, units, boundaries, uncertainty |
-| [project-structure.md](project-structure.md) | Repository map and responsibilities |
-| [development.md](development.md) | Local development and review workflow |
-| [installation.md](installation.md) | Environment setup and startup |
-| [testing.md](testing.md) | Automated checks and manual validation |
-| [accessibility.md](accessibility.md) | Keyboard, screen reader, contrast review |
-| [privacy.md](privacy.md) | Inputs, processing, storage boundaries |
-| [database.md](database.md) | Current absence of persistence |
-| [api.md](api.md) | Current absence of public API |
-| [deployment.md](deployment.md) | Hosting and deployment guidance |
-| [security.md](security.md) | Project-specific security notes |
-| [faq.md](faq.md) | Usage and interpretation questions |
-| [troubleshooting.md](troubleshooting.md) | Common setup and runtime issues |
-| [known-issues.md](known-issues.md) | Confirmed gaps |
-| [maintenance.md](maintenance.md) | Routine upkeep and handover |
-| [release-process.md](release-process.md) | Release checklist and versioning proposal |
-| [content-guide.md](content-guide.md) | Responsible wording and claims |
-| [performance.md](performance.md) | Current performance profile |
+| [architecture.md](architecture.md) | App structure and current formulas |
+| [calculation-reference.md](calculation-reference.md) | Formula reference and unit caveats |
+| [data-dictionary.md](data-dictionary.md) | Inputs and result fields |
+| [methodology.md](methodology.md) | Factor provenance and validation |
+| [assumptions-register.md](assumptions-register.md) | Open assumptions and resolution needs |
+| [validation-plan.md](validation-plan.md) | Evidence required for trustworthy results |
+| [glossary.md](glossary.md) | Project terminology |
+| [project-structure.md](project-structure.md) | Repository responsibilities |
+| [user-guide.md](user-guide.md) | How to operate the app |
+| [installation.md](installation.md) | Environment setup |
+| [development.md](development.md) | Contributor workflow |
+| [testing.md](testing.md) | Automated and manual checks |
+| [accessibility.md](accessibility.md) | Accessibility review |
+| [privacy.md](privacy.md) | Data handling |
+| [database.md](database.md) | Current no-database design |
+| [api.md](api.md) | Current no-public-API design |
+| [deployment.md](deployment.md) | Hosting |
+| [operations-runbook.md](operations-runbook.md) | Operational checks and incidents |
+| [security.md](security.md) | Project security notes |
+| [faq.md](faq.md) | Common questions |
+| [troubleshooting.md](troubleshooting.md) | Setup and runtime issues |
+| [known-issues.md](known-issues.md) | Confirmed limitations |
+| [maintenance.md](maintenance.md) | Routine maintenance |
+| [release-process.md](release-process.md) | Release procedure |
+| [content-guide.md](content-guide.md) | Responsible claims and wording |
 | [design-system.md](design-system.md) | UI consistency principles |
+| [performance.md](performance.md) | Performance considerations |
 | [assets/](assets/README.md) | Diagrams |
-| [templates/](templates/README.md) | Reusable project templates |
-| [decisions/](decisions/README.md) | Architecture decision records |
+| [decisions/](decisions/README.md) | Architecture decisions |
+| [templates/](templates/README.md) | Reusable templates |
 
-## 🗺️ Diagrams
+## 🗺️ System diagrams
 
 ![Application flow](assets/application-flow.svg)
 
-![Calculation flow](assets/calculation-data-flow.svg)
+![Calculation data flow](assets/calculation-data-flow.svg)
 
-## ✅ Current implementation snapshot
+## 📌 Implementation snapshot
 
-- Entry point: root `app.py`.
-- Interface: Streamlit.
-- Country selector: India only.
-- Inputs: daily commute km, monthly electricity kWh, weekly waste kg, meals per day.
-- Factors: hard-coded examples with no documented provenance.
-- Database, authentication, export, and public API: not implemented.
-- Dependency lock or pinned runtime: not present.
-- Automated checks: Python syntax and local Markdown links only.
+- Streamlit entry point: root `app.py`.
+- Country selection: India only.
+- Activity inputs: daily commute km, monthly electricity kWh, meals/day, weekly waste kg.
+- Factors: hard-coded example values without provenance.
+- Persistence, accounts, export, and public API: not implemented.
+- Dependency lock and automated calculation tests: not present.
+- CI: syntax and local Markdown link checks only.
 
-Update this snapshot when implementation changes.
+Update this index when new guides are introduced or implementation changes.

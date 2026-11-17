@@ -1,0 +1,18 @@
+title: "💡 Idea: "
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: What problem or opportunity do you see?
+    validations:
+      required: true
+  - type: textarea
+    id: idea
+    attributes:
+      label: Describe your idea
+    validations:
+      required: true
+  - type: textarea
+    id: considerations
+    attributes:
+      label: Data, methodology, privacy, and accessibility considerations

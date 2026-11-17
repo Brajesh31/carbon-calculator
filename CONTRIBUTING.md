@@ -1,62 +1,125 @@
-# Contributing
+# 🤝 Contributing to Personal Carbon Calculator
 
-Thank you for considering a contribution to Personal Carbon Calculator. Contributions should improve correctness, transparency, accessibility, usability, or documentation. Emission calculations require traceable sources and explicit units; avoid presenting example values as measured facts.
+Thank you for considering a contribution. The most valuable improvements are those that make the application more transparent, correct, accessible, maintainable, and honest about uncertainty.
 
-## Before starting
+> [!IMPORTANT]
+> This repository currently contains an educational Streamlit prototype with example emission factors. Do not introduce unsupported factors or present outputs as scientifically validated.
 
-1. Read README.md and the guides in docs.
-2. Check existing issues for related reports or proposals.
-3. Open an issue before large changes so the scope and method can be discussed.
-4. Do not commit personal data, API keys, private deployment settings, or datasets without clear redistribution rights.
+## 📑 Contents
 
-The project is maintained by Brajesh Kumar, GitHub account @brajesh31.
+- [Code of conduct](#-code-of-conduct)
+- [Ways to contribute](#-ways-to-contribute)
+- [Before opening an issue](#-before-opening-an-issue)
+- [Development setup](#-development-setup)
+- [Branch and commit conventions](#-branch-and-commit-conventions)
+- [Calculation and data contributions](#-calculation-and-data-contributions)
+- [Testing and review](#-testing-and-review)
+- [Pull request checklist](#-pull-request-checklist)
 
-## Report a defect
+## 🌱 Code of conduct
 
-Open a GitHub issue and include:
+Participation is governed by [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md). Be respectful, assume good faith, and discuss technical disagreements using evidence.
 
-- A concise summary and reproduction steps.
-- Expected and observed behavior.
-- Python and Streamlit versions and operating system.
-- The inputs and resulting output, using non-sensitive example values.
-- Relevant traceback text with local paths and secrets removed.
+## 💡 Ways to contribute
 
-Use SECURITY.md for vulnerability reports instead of a public issue.
+- Fix reproducible application defects.
+- Improve input labels, units, validation, and result explanations.
+- Improve documentation and diagrams.
+- Add accessibility improvements.
+- Extract calculation logic into testable functions.
+- Add independently derived tests.
+- Research and propose traceable emission-factor sources.
+- Improve setup, deployment, and maintenance workflows.
 
-## Propose a calculation or dataset change
+## 🐛 Before opening an issue
 
-Include the original source and its publication date, geography, reporting period, factor units, system boundary, and conversion method. Explain assumptions such as commute days, return journeys, household allocation, diet definitions, or waste disposal. Include attribution and license information for third-party data.
+1. Search existing issues and discussions.
+2. Choose the relevant issue template.
+3. Provide clear reproduction steps or a specific user problem.
+4. Include OS, Python, Streamlit, and browser versions where relevant.
+5. Use fictional sample values.
+6. Remove credentials, private paths, and personal data from logs.
 
-Do not claim an estimate is accurate or comparable until the methodology has been reviewed. A factor for one country, grid, year, or boundary may not apply elsewhere.
+For a suspected vulnerability, do not create a public issue. Follow [SECURITY.md](SECURITY.md).
 
-## Prepare a change
+## 🧰 Development setup
 
-1. Fork the repository and create a focused branch from main.
-2. Keep changes small and explain the user impact.
-3. Preserve explicit units and document how inputs are annualized.
-4. Keep external data sources and their attribution close to the factor definitions and in docs.
-5. Update documentation when inputs, units, formulas, regions, dependencies, or deployment behavior change.
-6. Do not commit virtual environments, bytecode, Streamlit secrets, generated output, or private input data.
-7. If adding Python dependencies, declare and pin them in a maintained dependency file after validating the chosen versions.
+```bash
+git clone https://github.com/Brajesh31/carbon-calculator.git
+cd carbon-calculator
+python -m venv .venv
+# Windows PowerShell: .venv\Scripts\Activate.ps1
+# macOS/Linux: source .venv/bin/activate
+python -m pip install --upgrade pip
+python -m pip install streamlit
+python -m streamlit run app.py
+```
 
-## Review your change
+The project does not yet pin Python or Streamlit versions. Do not claim reproducible dependency installation until a tested dependency manifest is added.
 
-There is no automated test suite or dependency lockfile in the repository. At minimum, install the declared dependencies in an isolated environment and run the app locally:
+## 🌿 Branch and commit conventions
 
-    streamlit run app.py
+Create focused branches from `main`, for example:
 
-Check representative minimum, typical, and maximum inputs; verify units and annual conversions independently; review output after changing a widget; and inspect terminal/browser errors. Describe what you checked in the pull request. Add automated tests when extracting calculation logic into functions or adding more categories.
+- `docs/methodology-guide`
+- `fix/input-unit-labels`
+- `feat/calculation-tests`
+- `accessibility/result-announcement`
 
-## Commit and pull request
+Use concise commit subjects with a category prefix:
 
-Use a concise commit subject such as:
+- `docs: explain factor assumptions`
+- `fix: clarify commute distance basis`
+- `test: add annualization cases`
+- `feat: add sourced factor catalog`
 
-- docs: explain calculation assumptions
-- fix: clarify commute distance basis
-- feat: add sourced electricity factor
+Keep each pull request focused. Avoid unrelated formatting changes.
 
-Open a pull request against main with the reason, formula or interface change, sources, validation performed, and remaining assumptions. Include a screenshot for substantial visual changes.
+## 🔬 Calculation and data contributions
 
-## License and conduct
+Every new or changed factor must include:
 
-By submitting a contribution, you agree that it may be distributed under the repository's MIT License. You confirm that you have the right to submit all code and data and include required attribution. Follow CODE_OF_CONDUCT.md.
+1. Original publisher and source title.
+2. Publication date and effective/reporting year.
+3. Geographic coverage.
+4. Activity definition and denominator.
+5. Explicit numerator and denominator units.
+6. System boundary and included lifecycle stages.
+7. Gas basis, CO₂ or CO₂e, and conversion basis where applicable.
+8. Allocation assumptions and conversion method.
+9. Uncertainty and known limitations.
+10. Reuse license and attribution requirements.
+
+Include an independent hand calculation and representative test fixtures. A source URL alone is not enough. A factor from one country, grid region, year, or system boundary may not be suitable elsewhere.
+
+Never quietly change the meaning of an existing input. For example, changing commute distance from daily total to one-way distance changes the result contract and must be explained in the UI and changelog.
+
+## 🧪 Testing and review
+
+The repository currently has syntax and documentation-link CI checks, but no automated scientific or calculation test suite.
+
+At minimum:
+
+- Run `python -m py_compile app.py`.
+- Run `python -m streamlit run app.py` and complete the manual smoke test.
+- Check zero, typical, and boundary values.
+- Independently derive expected values for calculation changes.
+- Inspect keyboard navigation and responsive behavior for UI changes.
+- Review all affected documentation links.
+- State exactly what was tested and what was not tested.
+
+See [docs/testing.md](docs/testing.md) and use [the test report template](docs/templates/test-report-template.md).
+
+## ✅ Pull request checklist
+
+- [ ] The change solves a defined problem.
+- [ ] Scope is focused and unrelated files are excluded.
+- [ ] No secrets, private values, or generated local files are committed.
+- [ ] Calculation units and annualization assumptions are explicit.
+- [ ] Factor provenance and licensing are included where relevant.
+- [ ] Tests or manual verification evidence are described.
+- [ ] Accessibility has been reviewed for UI changes.
+- [ ] README, docs, roadmap, and changelog are updated where needed.
+- [ ] Known limitations are not hidden or overstated.
+
+Use [the pull request template](.github/PULL_REQUEST_TEMPLATE.md). By submitting code or documentation, you confirm you have the right to contribute it under the repository's MIT License and that any included third-party material is properly licensed.

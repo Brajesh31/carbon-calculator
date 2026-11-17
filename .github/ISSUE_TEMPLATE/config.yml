@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Security vulnerability reporting
+    url: https://github.com/Brajesh31/carbon-calculator/security/advisories/new
+    about: Report security concerns privately. Do not publish vulnerability details in a public issue.
+  - name: Project documentation
+    url: https://github.com/Brajesh31/carbon-calculator/tree/main/docs
+    about: Read setup, methodology, privacy, and troubleshooting guides.

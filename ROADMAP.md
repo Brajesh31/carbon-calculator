@@ -1,59 +1,68 @@
-# Roadmap
+# 🛣️ Product and Engineering Roadmap
 
-This roadmap describes possible work for the prototype. It is a planning aid,
-not a commitment to deliver features by a particular date. Priorities may change
-as methodology sources, contributions, and maintenance capacity change.
+This roadmap is a prioritization document, not a promise of delivery dates. Scientific validity and user trust take priority over adding more features.
 
-## Current baseline
+## 🧭 Current baseline
 
-- One Streamlit page, implemented in `app.py`.
-- India only, with four input categories and hard-coded example factors.
-- No documented factor provenance, automated tests, or pinned dependency file.
+- Single-page Streamlit application in `app.py`.
+- India-only country selector.
+- Four input categories: commute, electricity, diet, and waste.
+- Hard-coded illustrative factors with no source records.
+- No automated calculation tests or pinned dependency manifest.
+- No persistent storage, authentication, export, or public API.
 
-## Proposed priorities
+## 🔴 Priority 1: Establish a defensible methodology
 
-### 1. Make the estimate reproducible and explainable
+- [ ] Identify credible sources for each factor.
+- [ ] Record publication date, reporting year, geography, unit, boundary, gas basis, uncertainty, and license.
+- [ ] Resolve the diet factor's dimensional inconsistency.
+- [ ] Define commute distance semantics and commute frequency.
+- [ ] Define waste composition and treatment assumptions.
+- [ ] Replace or remove the uncited national comparison.
+- [ ] Arrange subject-matter review before making accuracy claims.
 
-- Identify credible, current sources for every factor and the comparison
-  statistic, including date, geography, units, boundary, and license.
-- Review the calculations with a qualified subject-matter reviewer before
-  describing the results as validated.
-- State the commute distance basis, travel days, household allocation, and
-  treatment of diet and waste explicitly.
-- Preserve unrounded intermediate values and define a consistent rounding
-  policy; add independently checked examples and tests for the calculation
-  functions.
+**Exit condition:** each displayed category has a traceable factor and a reviewed calculation definition.
 
-### 2. Improve maintainability
+## 🟠 Priority 2: Make calculations independently testable
 
-- Separate calculation logic and source data from the Streamlit presentation.
-- Declare a supported Python version and maintain a dependency file with
-  reviewed, reproducible versions.
-- Add automated checks for calculation behavior and basic application
-  regressions.
-- Document how factor updates are reviewed and attributed.
+- [ ] Extract pure calculation functions from Streamlit UI code.
+- [ ] Add validation for input ranges and units.
+- [ ] Add independent test fixtures for zero, typical, and boundary cases.
+- [ ] Define precision and rounding policy.
+- [ ] Document error handling and calculation version.
 
-### 3. Improve usability and accessibility
+**Exit condition:** core calculations can be tested without importing or launching the Streamlit interface.
 
-- Explain each input and its time period beside the control.
-- Make units and assumptions visible with each result.
-- Review keyboard navigation, screen reader labels, responsive layout, and
-  error handling.
-- Allow users to understand the category breakdown and limitations without
-  interpreting the estimate as a complete personal footprint.
+## 🟡 Priority 3: Improve reproducibility and maintenance
 
-### 4. Consider broader coverage
+- [ ] Declare supported Python version.
+- [ ] Add a reviewed Streamlit dependency manifest.
+- [ ] Add automated calculation tests to CI.
+- [ ] Add dependency update and vulnerability review practices.
+- [ ] Document a reproducible release procedure.
 
-- Evaluate additional geographies or categories only after suitable factor
-  sources and licensing have been reviewed.
-- Keep regional, temporal, and methodological coverage visible so users do not
-  compare estimates with incompatible boundaries.
-- Consider an export or API only after a privacy and data-retention design is
-  agreed and documented.
+**Exit condition:** a clean environment can install known dependencies and run the same checks.
 
-## How to propose a roadmap item
+## 🟢 Priority 4: Improve user experience
 
-Open an issue describing the user need, proposed scope, data sources, validation
-approach, and maintenance implications. Changes to factors require traceable
-evidence; see [CONTRIBUTING.md](CONTRIBUTING.md). No target dates are set while
-the calculation methodology remains unverified.
+- [ ] Clarify every input's unit and time basis.
+- [ ] Add contextual explanations beside each category.
+- [ ] Improve keyboard and screen-reader experience.
+- [ ] Show source and assumptions alongside result values.
+- [ ] Improve error and empty states.
+- [ ] Add export only after privacy and retention decisions.
+
+## 🔵 Priority 5: Carefully expand scope
+
+- [ ] Evaluate additional countries only when region-appropriate factors are available.
+- [ ] Evaluate additional categories with explicit boundaries and non-overlapping activity definitions.
+- [ ] Consider historical comparisons only with versioned factors.
+- [ ] Consider APIs or accounts only with a concrete user need and security/privacy design.
+
+## 🚫 Explicit non-goals for the current prototype
+
+Do not add a database, account system, payment integration, or complex infrastructure simply to make the repository appear larger. Do not claim complete or certified accounting while factor provenance remains unresolved.
+
+## 📌 Propose roadmap work
+
+Open an issue with user need, proposed scope, data sources, validation approach, privacy implications, and maintenance cost. Use the methodology-change template for factor updates.
